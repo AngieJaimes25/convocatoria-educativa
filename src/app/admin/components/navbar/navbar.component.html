@@ -1,0 +1,63 @@
+<!-- <nav class="w-screen py-3 px-4">
+    <div class="flex align-items-center justify-content-between mb-4">
+        <h1 class="text-red-600 m-0">Convocatoria Educativa</h1>
+        <div class="flex justify-content-between align-items-center gap-2 font-semibold cursor-pointer">
+            Administrador
+            <img class="border-circle" src="/assets/images/logoufps.png" width="30">
+        </div>
+    </div>
+    <ul class="list-none flex gap-4 align-items-center">
+        <li>
+            <a routerLink="/admin/convocatorias" routerLinkActive="bg-red-600"
+               class="cursor-pointer border-1 px-2 py-1 border-round no-underline">
+               Convocatoria
+            </a>
+        </li>
+        <li>
+            <a routerLink="/admin/propuestas" routerLinkActive="bg-red-600"
+               class="cursor-pointer border-1 px-2 py-1 border-round no-underline">
+               Propuestas Registradas
+            </a>
+        </li>
+        <li class="cursor-pointer border-1 px-2 py-1 border-round ">
+            <a>Asignar Evaluadores</a>
+        </li>
+        <li class="cursor-pointer border-1 px-2 py-1 border-round ">
+            <a>Resultados</a>
+        </li>
+    </ul>    
+</nav> -->
+
+<nav class="px-6 surface-overlay">
+    <div class="py-3 flex align-items-center justify-content-between lg:static">
+        <h1 class="text-red-600 m-0">Convocatoria Educativa</h1>
+        <img class="border-circle cursor-pointer" (click)="menu.toggle($event)" src="/assets/images/logoufps.png" 
+             width="35">
+    </div>
+    <div class="py-3 hidden lg:block absolute lg:static lg:w-auto 
+                w-full left-0 top-100 z-1 border-top-1 surface-border">
+        <ul class="list-none m-0 p-0 flex lg:align-items-center flex-column 
+                   lg:flex-row select-none gap-4">
+            <li>
+                <a class="cursor-pointer no-underline text-600"
+                   routerLink="/admin/convocatorias"
+                   routerLinkActive="font-semibold text-red-500">Convocatoria</a>
+            </li>
+            <li>
+                <a class="cursor-pointer no-underline text-600"
+                   routerLink="/admin/propuestas"
+                   routerLinkActive="font-semibold text-red-500">Propuestas Registradas</a>
+            </li>
+            <li>
+                <a class="cursor-pointer no-underline text-600"
+                   routerLink="/admin/evaluadores"
+                   routerLinkActive="font-semibold text-red-500">Asignar Evaluadores</a>
+            </li>
+            <li>
+                <a class="cursor-pointer">Resultados</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<p-menu #menu [model]="items" [popup]="true"></p-menu>

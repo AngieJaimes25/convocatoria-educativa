@@ -1,0 +1,9 @@
+<nav class="px-6 surface-overlay">
+    <div class="py-3 flex align-items-center justify-content-between lg:static">
+        <h1 class="text-red-600 m-0">Convocatoria Educativa</h1>
+        <img class="border-circle cursor-pointer" (click)="menu.toggle($event)" src="/assets/images/logoufps.png" 
+             width="35">
+    </div>
+</nav>
+
+<p-menu #menu [model]="items" [popup]="true"></p-menu>

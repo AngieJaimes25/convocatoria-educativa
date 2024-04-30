@@ -1,0 +1,59 @@
+<p-toast></p-toast>
+
+<form class="flex flex-column"
+      [formGroup]="myForm"
+      (ngSubmit)="login()">
+    <h1 class="text-center mb-6 font-medium">Inicio de Sesión</h1>
+
+    <div class="flex flex-column gap-2 mb-4">
+        <label for="codigo" class="text-sm">Codigo</label>
+        <input pInputText class="p-inputtext-sm" id="codigo" formControlName="codigo"/>
+        <span *ngIf="isValidField('codigo')" class="text-sm text-red-600">
+            El codigo es requerido
+        </span>
+    </div>
+
+    <div class="flex flex-column gap-2 mb-4">
+        <label for="email" class="text-sm">Email</label>
+        <input pInputText class="p-inputtext-sm" id="email" formControlName="email"/>
+        <span *ngIf="isValidField('email')" class="text-sm text-red-600">
+            El correo electronico es requerido
+        </span>
+    </div>
+
+    <div class="flex flex-column gap-2 mb-3">
+        <label for="contrasenia" class="text-sm">Contraseña</label>
+        <p-password [toggleMask]="true" class="p-inputtext-sm" formControlName="contrasenia"
+                    [feedback]="false" inputId="contrasenia" inputStyleClass="w-full" 
+                    styleClass="w-full"></p-password>
+        <span *ngIf="isValidField('contrasenia')" class="text-sm text-red-600">
+            La contraseña es requerida
+        </span>
+    </div>
+    <a class="text-red-600 text-sm mb-3 cursor-pointer"
+       (click)="showDialog()">Recuperar contraseña</a>
+    
+    <p-button type="submit" size="small" styleClass="w-full" label="Iniciar Sesión" severity="danger"></p-button>
+
+    <div class="text-600 text-sm mt-7 text-center">
+        No te encuentras registrado?
+        <a routerLink="/auth/register" 
+           class="text-red-600 cursor-pointer no-underline">Crear una cuenta</a>
+    </div>
+</form>
+
+
+<p-dialog header="Recuperar Contraseña" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <form [formGroup]="myFormPassword"
+          (ngSubmit)="resetPassword()"
+          class="p-4">
+        <div class="flex flex-column gap-2 mb-6">
+            <label for="email" class="text-sm">Email</label>
+            <input pInputText class="p-inputtext-sm" id="email" formControlName="email"/>
+            <span *ngIf="isValidField('email')" class="text-sm text-red-600">
+                El correo electronico es requerido
+            </span>
+        </div>
+        <p-button type="submit" size="small" styleClass="w-full" label="Recuperar contraseña" severity="danger"></p-button>
+    </form>
+</p-dialog>

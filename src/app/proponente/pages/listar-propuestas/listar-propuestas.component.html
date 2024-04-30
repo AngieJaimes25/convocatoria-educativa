@@ -1,0 +1,27 @@
+<div class="px-6 py-5">
+
+    <div class="mb-6">
+        <div class="flex mb-3 align-content-center justify-content-between flex-wrap">
+            <div class="text-xl mb-3 font-semibold">Propuestas</div>
+            <p-button size="small" (click)="redirectAgregar()" severity="danger" label="Agregar"></p-button>
+        </div>
+        <p-table [value]="propuestas" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre de la propuesta</th>
+                    <th>Tipo</th>
+                    <th>Codigo de materia/semillero</th>
+                    <th>Profesor</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-propuesta>
+                <tr>
+                    <td>{{ propuesta.nombre }}</td>
+                    <td>{{ propuesta.tipo == "1" ? 'Materia': 'Semillero' }}</td>
+                    <td>{{ propuesta.tipo == "1" ? propuesta.materia.codigo : propuesta.semillero.codigo }}</td>
+                    <td>{{ propuesta.profesor.nombre }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

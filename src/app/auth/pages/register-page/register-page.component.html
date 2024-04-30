@@ -1,0 +1,49 @@
+<p-toast></p-toast>
+
+<form class="flex flex-column" 
+      [formGroup]="myForm"
+      (ngSubmit)="register()">
+    <h1 class="text-center mb-6 font-medium">Registrar cuenta</h1>
+
+    <div class="flex flex-column gap-2 mb-4">
+        <label for="codigo" class="text-sm">Codigo</label>
+        <input pInputText formControlName="codigo" class="p-inputtext-sm" id="codigo"/>
+    </div>
+
+    <div class="flex flex-column gap-2 mb-4">
+        <label for="email" class="text-sm">Email</label>
+        <input pInputText formControlName="email" class="p-inputtext-sm" id="email"/>
+    </div>
+
+    <div class="flex flex-column gap-2 mb-4">
+        <label for="email" class="text-sm">Rol</label>
+        <p-dropdown formControlName="rol" styleClass="w-full p-inputtext-sm" [options]="roles" optionValue="id" optionLabel="name" placeholder="Selecciona un rol"></p-dropdown>
+    </div>
+
+
+    <div class="flex flex-column gap-2 mb-6">
+        <label for="contraseniaDesencriptada" class="text-sm">Contraseña</label>
+        <p-password [toggleMask]="true" class="p-inputtext-sm" formControlName="contraseniaDesencriptada"
+                    inputId="contraseniaDesencriptada" inputStyleClass="w-full" styleClass="w-full">
+            <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Sugerencias</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>Al menos una minúscula</li>
+                    <li>Al menos una mayúscula</li>
+                    <li>Al menos un número</li>
+                    <li>Al menos un carácter especial</li>
+                    <li>Minimo 8 letras</li>
+                </ul>
+            </ng-template>
+        </p-password>
+    </div>
+
+    <p-button type="submit" size="small" styleClass="w-full" label="Registrarse" severity="danger"></p-button>
+
+    <div class="text-600 text-sm mt-7 text-center">
+        Ya tienes una cuenta?
+        <a routerLink="/auth/login" 
+           class="text-red-600 cursor-pointer no-underline">Iniciar sesión</a>
+    </div>
+</form>

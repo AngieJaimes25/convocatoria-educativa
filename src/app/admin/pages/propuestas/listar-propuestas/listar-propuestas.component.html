@@ -1,0 +1,89 @@
+<div class="px-6 py-5">
+
+    <div class="mb-6">
+        <div class="flex mb-3 justify-content-between align-items-center">
+            <div class="text-xl font-semibold">Propuestas de Materia</div>
+            <div class="flex gap-3">
+                <p-button type="submit" size="small" (click)="verProfesores()" label="Ver profesores" severity="danger"></p-button>
+                <p-button type="submit" size="small" (click)="verMaterias()" label="Ver materias" severity="danger"></p-button>
+                <p-button type="submit" size="small" (click)="verSemilleros()" label="Ver semilleros" severity="danger"></p-button>
+            </div>
+        </div>
+        <p-table [value]="propuestasDeMaterias" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre de la propuesta</th>
+                    <th>Nombre de estudiante/s</th>
+                    <th>Codigo de estudiante/s</th>
+                    <th>Codigo de materia</th>
+                    <th>Profesor</th>
+                    <th>Editar</th>
+                    <th>Calificar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-propuesta>
+                @for(proponente of propuesta.proponentes; track proponente.codigo; let idx = $index) {
+                    <tr>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.nombre }}
+                        </td>
+                        <td>{{ proponente?.nombre  }}</td>
+                        <td>{{ proponente?.codigo }}</td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.materia?.codigo }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.profesor?.nombre }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" [outlined]="true"></p-button>
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            <p-button icon="pi pi-check-circle" [rounded]="true" severity="info" [outlined]="true"></p-button>
+                        </td>
+                    </tr>
+                }
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="mb-6">
+        <div class="text-xl mb-3 font-semibold">Propuestas de Semillero</div>
+        <p-table [value]="propuestasDeSemillero" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre de la propuesta</th>
+                    <th>Nombre de estudiante/s</th>
+                    <th>Codigo de estudiante/s</th>
+                    <th>Codigo de semillero</th>
+                    <th>Profesor</th>
+                    <th>Editar</th>
+                    <th>Calificar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-propuesta>
+                @for(proponente of propuesta.proponentes; track proponente.codigo; let idx = $index) {
+                    <tr>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.nombre }}
+                        </td>
+                        <td>{{ proponente?.nombre  }}</td>
+                        <td>{{ proponente?.codigo }}</td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.semillero?.codigo }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.profesor?.nombre }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" [outlined]="true"></p-button>
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            <p-button icon="pi pi-check-circle" [rounded]="true" severity="info" [outlined]="true"></p-button>
+                        </td>
+                    </tr>
+                }
+            </ng-template>
+        </p-table>
+    </div>
+</div>

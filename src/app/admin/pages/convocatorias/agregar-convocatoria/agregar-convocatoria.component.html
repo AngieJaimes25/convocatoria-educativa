@@ -1,0 +1,45 @@
+<p-toast></p-toast>
+
+<div class="px-6 py-7">
+    <form class="formgrid grid p-fluid" 
+          [formGroup]="myForm"
+          (ngSubmit)="submit()">
+        
+        <div class="field mb-4 col-12 md:col-6 px-5">
+            <label class="mb-2 text-900">Fecha de Inicio de Inscripciones</label>
+            <p-calendar formControlName="fechaInicio" styleClass="p-inputtext-sm" dateFormat="dd/mm/yy"></p-calendar>
+            <span *ngIf="isValidField('fechaInicio')" class="text-sm text-red-600">
+                La fecha de inicio de inscripción es requerida
+            </span>
+        </div>
+        
+        <div class="field mb-4 col-12 md:col-6 px-5">
+            <label class="mb-2 text-900">Fecha de Fin de Inscripción</label>
+            <p-calendar formControlName="fechaFin" styleClass="p-inputtext-sm" dateFormat="dd/mm/yy"></p-calendar>
+            <span *ngIf="isValidField('fechaFin')" class="text-sm text-red-600">
+                La fecha de fin de inscripción es requerida
+            </span>
+        </div>
+        
+        <div class="field mb-7 col-12 md:col-6 px-5">
+            <label class="mb-2 text-900">Fecha de Presentación de resultados</label>
+            <p-calendar formControlName="fechaResultados" styleClass="p-inputtext-sm" dateFormat="dd/mm/yy"></p-calendar>
+            <span *ngIf="isValidField('fechaResultados')" class="text-sm text-red-600">
+                La fecha de fin del resultado es requerida
+            </span>
+        </div>
+        
+        <div class="field mb-4 col-12">
+            <div class="grid">
+                <div class="col-12 md:col-6 px-5">
+                    <p-button size="small" label="Historial"
+                              (click)="toHistory()"  
+                              [outlined]="true" severity="secondary"></p-button>
+                </div>
+                <div class="col-12 md:col-6 px-5">
+                    <p-button type="submit" size="small" label="Abrir/Modificar Convocatoria" severity="danger"></p-button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,101 @@
+<div class="px-7 py-6">
+    <div class="text-xl mb-3 font-semibold">Registrar propuesta</div>
+
+    <form class="formgrid grid p-fluid py-4"
+        [formGroup]="myForm"
+        (ngSubmit)="submit()">
+        <div class="field mb-4 col-12 grid">
+            <label class="mb-2 col-4 text-900">Nombre de la Propuesta</label>
+            <div class="col-8">
+                <input pInputText formControlName="nombre" styleClass="p-inputtext-sm" />
+                <span *ngIf="isValidField('nombre')" class="text-sm text-red-600">
+                    El nombre es requerido es requerido
+                </span>
+            </div>
+        </div>
+
+        <div formArrayName="estudiantes">
+            <label class="mb-4 text-900">Estudiantes</label>
+            <div class="field mt-3 col-12 grid" *ngFor="let estudiante of estudiantes.controls; let i = index" [formGroupName]="i">
+                <div class="field col-3 grid">
+                    <label class="mb-2 col-3 text-900">Codigo</label>
+                    <div class="col-9">
+                        <input pInputText formControlName="codigo" styleClass="p-inputtext-sm" />
+                        <span *ngIf="isValidEstudianteField('codigo', i)" class="text-sm text-red-600">
+                            El codigo es requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="field col-3 grid">
+                    <label class="mb-2 col-3 text-900">Nombre</label>
+                    <div class="col-9">
+                        <input pInputText formControlName="nombre" styleClass="p-inputtext-sm" />
+                        <span *ngIf="isValidEstudianteField('nombre', i)" class="text-sm text-red-600">
+                            El nombre es requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="field col-3 grid">
+                    <label class="mb-2 col-3 text-900">Cedula</label>
+                    <div class="col-9">
+                        <input pInputText formControlName="cedula" styleClass="p-inputtext-sm" />
+                        <span *ngIf="isValidEstudianteField('cedula', i)" class="text-sm text-red-600">
+                            La cedula es requerida
+                        </span>
+                    </div>
+                </div>
+                <div class="field col-2 grid">
+                    <label class="mb-2 col-5 text-900">Semestre</label>
+                    <div class="col-7">
+                        <input pInputText formControlName="semestre" styleClass="p-inputtext-sm" />
+                        <span *ngIf="isValidEstudianteField('semestre', i)" class="text-sm text-red-600">
+                            El semestre es requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="field col-1">
+                    <p-button (onClick)="eliminarEstudiante(i)" icon="pi pi-times" severity="danger"></p-button>
+                </div> 
+            </div>
+        </div>
+        <div class="field mb-4 px-3 flex col-12 justify-content-end">
+            <p-button (onClick)="agregarEstudiante()" size="small" severity="danger" label="Agregar Estudiante"></p-button>
+        </div>
+
+        <div class="field mb-4 col-12 grid">
+            <label class="mb-2 col-4 text-900">Docente a cargo</label>
+            <div class="col-8">
+                <p-dropdown formControlName="profesor" [options]="profesores" optionLabel="nombre" placeholder="Selecciona un profesor"></p-dropdown>
+                <span *ngIf="isValidField('profesor')" class="text-sm text-red-600">
+                    El profesor es requerido es requerido
+                </span>
+            </div>
+        </div>
+
+        <div class="field mb-4 col-12 grid">
+            <label class="mb-2 col-4 text-900">Materia</label>
+            <div class="col-8">
+                <p-dropdown formControlName="materia" [options]="materias" [showClear]="true" optionLabel="nombre" placeholder="Selecciona una materia"></p-dropdown>
+            </div>
+        </div>
+
+        <div class="field mb-4 col-12 grid">
+            <label class="mb-2 col-4 text-900">Semillero</label>
+            <div class="col-8">
+                <p-dropdown formControlName="semillero" [options]="semilleros" [showClear]="true" optionLabel="nombre" placeholder="Selecciona un semillero"></p-dropdown>
+            </div>
+        </div>
+
+        <div class="field mb-4 col-12 grid">
+            <label class="mb-2 col-4 text-900">Archivo</label>
+            <div class="col-8">
+                <input (change)="subirArchivo($event)" type="file">
+            </div>
+        </div>
+
+        <div class="col-12 flex justify-content-end px-4">
+            <p-button type="submit" size="small" severity="danger" label="Agregar"></p-button>
+        </div>
+
+    </form>
+</div>

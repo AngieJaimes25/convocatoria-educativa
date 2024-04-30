@@ -1,0 +1,46 @@
+<div class="px-6 py-5">
+
+    <div class="mb-6">
+        <p-table [value]="propuestas" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre de la propuesta</th>
+                    <th>Nombre de estudiante/s</th>
+                    <th>Codigo de estudiante/s</th>
+                    <th>Tipo</th>
+                    <th>Codigo de materia/semillero</th>
+                    <th>Profesor</th>
+                    <th>Asignar Evaluador</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-propuesta>
+                @for(proponente of propuesta.proponentes; track proponente.codigo; let idx = $index) {
+                    <tr>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.nombre }}
+                        </td>
+                        <td>{{ proponente?.nombre  }}</td>
+                        <td>{{ proponente?.codigo }}</td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta.semillero != null ? 'Semillero': 'Materia' }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.materia != null ? propuesta?.materia.codigo : propuesta?.semillero.codigo }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            {{ propuesta?.profesor?.nombre }}
+                        </td>
+                        <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
+                            <p-dropdown [options]="evaluadores" 
+                                styleClass="w-full p-inputtext-sm" 
+                                optionLabel="email" 
+                                appendTo="body" 
+                                placeholder="Seleccione un evaluador">
+                            </p-dropdown>
+                        </td>
+                    </tr>
+                }
+            </ng-template>
+        </p-table>
+    </div>
+</div>
