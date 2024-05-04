@@ -34,7 +34,7 @@ export class RegistrarPropuestaComponent implements OnInit {
     profesor: [null, [ Validators.required ]],
     semillero: [null],
     materia: [null],
-    archivo: ['', [ Validators.required ]],
+    archivo: [''],
     tipo: ['M', [ Validators.required ]],
     estudiantes: this.fb.array([])
   });
@@ -115,6 +115,7 @@ export class RegistrarPropuestaComponent implements OnInit {
 
   submit() {
     if (this.myForm.invalid) return this.myForm.markAllAsTouched();
+    console.log(this.myForm.invalid);
     const { estudiantes, ...resto } = this.myForm.value;
     const { tipo } = resto;
     if (tipo == 'M') delete resto.semillero;
@@ -123,6 +124,7 @@ export class RegistrarPropuestaComponent implements OnInit {
     this.propuestasService.agregarPropuesta([ ...estudiantes, resto ])
       .subscribe({
         next: (data) => {
+          console.log(data);
           this.router.navigateByUrl('proponente/');
         }, 
         error: (error) => {
