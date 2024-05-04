@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { PrimengModule } from '../primeng/primeng.module';
@@ -26,6 +26,8 @@ import { ListarSemillerosComponent } from './pages/semilleros/listar-semilleros/
 
 // Evaluadores
 import { AsignarEvaluadorComponent } from './pages/evaluadores/asignar-evaluador/asignar-evaluador.component';
+import { EvaluadorSelectComponent } from './components/evaluador-select/evaluador-select.component';
+import { VerResultadosComponent } from './pages/resultados/ver-resultados/ver-resultados.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +40,15 @@ import { AsignarEvaluadorComponent } from './pages/evaluadores/asignar-evaluador
     ListarMateriasComponent,
     ListarSemillerosComponent,
     AsignarEvaluadorComponent,
+    EvaluadorSelectComponent,
+    VerResultadosComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     PrimengModule,
     ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class AdminModule { }

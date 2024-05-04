@@ -2,6 +2,7 @@ import { Convocatoria } from './convocatoria.interface';
 import { Materia } from './materia.interface';
 import { Profesor } from './profesor.interface';
 import { Proponente } from './proponente.interface';
+import { Semillero } from './semillero.interface';
 
 export interface Propuesta {
     id:           number;
@@ -11,7 +12,7 @@ export interface Propuesta {
     puntaje:      null;
     tipo:         string;
     materia:      Materia;
-    semillero:    null;
+    semillero:    Semillero;
     profesor:     Profesor;
     archivo:      string;
 }

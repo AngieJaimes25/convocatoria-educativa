@@ -17,8 +17,8 @@
             <ng-template pTemplate="body" let-propuesta>
                 <tr>
                     <td>{{ propuesta.nombre }}</td>
-                    <td>{{ propuesta.tipo == "1" ? 'Materia': 'Semillero' }}</td>
-                    <td>{{ propuesta.tipo == "1" ? propuesta.materia.codigo : propuesta.semillero.codigo }}</td>
+                    <td>{{ propuesta.tipo == "M" ? 'Materia': 'Semillero' }}</td>
+                    <td>{{ propuesta.tipo == "M" ? propuesta.materia.codigo : propuesta.semillero.codigo }}</td>
                     <td>{{ propuesta.profesor.nombre }}</td>
                 </tr>
             </ng-template>

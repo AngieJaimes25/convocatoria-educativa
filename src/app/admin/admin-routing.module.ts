@@ -19,6 +19,7 @@ import { ListarMateriasComponent } from './pages/materias/listar-materias/listar
 // Semilleros
 import { ListarSemillerosComponent } from './pages/semilleros/listar-semilleros/listar-semilleros.component';
 import { AsignarEvaluadorComponent } from './pages/evaluadores/asignar-evaluador/asignar-evaluador.component';
+import { VerResultadosComponent } from './pages/resultados/ver-resultados/ver-resultados.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,13 @@ const routes: Routes = [
           { path: '', component: AsignarEvaluadorComponent },
           { path: '**', redirectTo: '' }
         ]
+      },
+      { 
+        path: 'resultados',
+        children: [
+          { path: '', component: VerResultadosComponent },
+          { path: '**', redirectTo: '' }
+        ] 
       },
       { path: '**', redirectTo: 'convocatorias' }
     ]

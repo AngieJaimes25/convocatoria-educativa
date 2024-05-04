@@ -1,0 +1,11 @@
+<p-dropdown
+  [options]="evaluadores"
+  styleClass="w-full p-inputtext-sm"
+  optionLabel="email"
+  optionValue="id"
+  appendTo="body"
+  [(ngModel)]="evaluadorId"
+  (onChange)="asignarEvaluador($event)"
+  placeholder="Seleccione un evaluador"
+>
+</p-dropdown>

@@ -39,7 +39,7 @@
                             <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" [outlined]="true"></p-button>
                         </td>
                         <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
-                            <p-button icon="pi pi-check-circle" [rounded]="true" severity="info" [outlined]="true"></p-button>
+                            <p-button icon="pi pi-check-circle" (onClick)="abrirModal(propuesta)" [rounded]="true" severity="info" [outlined]="true"></p-button>
                         </td>
                     </tr>
                 }
@@ -79,7 +79,7 @@
                             <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" [outlined]="true"></p-button>
                         </td>
                         <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
-                            <p-button icon="pi pi-check-circle" [rounded]="true" severity="info" [outlined]="true"></p-button>
+                            <p-button icon="pi pi-check-circle" (onClick)="abrirModal(propuesta)" [rounded]="true" severity="info" [outlined]="true"></p-button>
                         </td>
                     </tr>
                 }
@@ -87,3 +87,16 @@
         </p-table>
     </div>
 </div>
+
+
+<p-dialog header="Calificar" [modal]="true" [(visible)]="visible" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" >
+    <form class="formgrid grid p-fluid p-4" [formGroup]="myForm" (ngSubmit)="submit()">
+        <div class="field mb-4 col-12">
+            <label class="mb-2 text-900">Calificacion</label>
+            <input pInputText formControlName="calificacion" styleClass="p-inputtext-sm" />
+        </div>
+        <div class="flex mb-4 col-12 justify-content-end">
+            <p-button type="submit" severity="danger" label="Calificar"></p-button>
+        </div>
+    </form>
+</p-dialog>

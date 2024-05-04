@@ -32,4 +32,14 @@ export class PropuestasService {
     const url  = `${ this.baseUrl }/propuesta/listarAgrupadasPorTipo`;
     return this.http.get<Propuesta[]>( url, this.commonOptions );
   } 
+
+  asignarEvaluador(propuestaId: number, evaluadorId: number) {
+    const url  = `${ this.baseUrl }/propuesta/asignarEvaluador?idPropuesta=${ propuestaId }&idEvaluador=${ evaluadorId }`;
+    return this.http.get( url, this.commonOptions );
+  }
+
+  calificarPropuesta(propuestaId: number, puntaje: number) {
+    const url  = `${ this.baseUrl }/propuesta/calificarPropuestaAdmin?idPropuesta=${ propuestaId }&puntaje=${ puntaje }`;
+    return this.http.get( url, this.commonOptions );
+  }
 }

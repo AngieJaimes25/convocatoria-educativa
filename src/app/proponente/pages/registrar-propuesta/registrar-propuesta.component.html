@@ -73,18 +73,29 @@
         </div>
 
         <div class="field mb-4 col-12 grid">
-            <label class="mb-2 col-4 text-900">Materia</label>
+            <label class="mb-2 col-4 text-900">Tipo</label>
             <div class="col-8">
-                <p-dropdown formControlName="materia" [options]="materias" [showClear]="true" optionLabel="nombre" placeholder="Selecciona una materia"></p-dropdown>
+                <p-dropdown formControlName="tipo" [options]="tipos" [showClear]="true" optionValue="id" optionLabel="nombre" placeholder="Selecciona el tipo de propuesta"></p-dropdown>
             </div>
         </div>
+        
+        @if(myForm.get('tipo')?.value == "M") {
+            <div class="field mb-4 col-12 grid">
+                <label class="mb-2 col-4 text-900">Materia</label>
+                <div class="col-8">
+                    <p-dropdown formControlName="materia" [options]="materias" [showClear]="true" optionLabel="nombre" placeholder="Selecciona una materia"></p-dropdown>
+                </div>
+            </div>
+        }
 
-        <div class="field mb-4 col-12 grid">
-            <label class="mb-2 col-4 text-900">Semillero</label>
-            <div class="col-8">
-                <p-dropdown formControlName="semillero" [options]="semilleros" [showClear]="true" optionLabel="nombre" placeholder="Selecciona un semillero"></p-dropdown>
+        @if(myForm.get('tipo')?.value == "S") {
+            <div class="field mb-4 col-12 grid">
+                <label class="mb-2 col-4 text-900">Semillero</label>
+                <div class="col-8">
+                    <p-dropdown formControlName="semillero" [options]="semilleros" [showClear]="true" optionLabel="nombre" placeholder="Selecciona un semillero"></p-dropdown>
+                </div>
             </div>
-        </div>
+        }
 
         <div class="field mb-4 col-12 grid">
             <label class="mb-2 col-4 text-900">Archivo</label>

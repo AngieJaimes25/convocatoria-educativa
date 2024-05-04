@@ -10,7 +10,7 @@
                     <th>Tipo</th>
                     <th>Codigo de materia/semillero</th>
                     <th>Profesor</th>
-                    <th>Asignar evaluador</th>
+                    <th>Calificacion</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-propuesta>
@@ -31,7 +31,7 @@
                             {{ propuesta?.profesor?.nombre }}
                         </td>
                         <td *ngIf="idx == 0" [attr.rowspan]="propuesta.proponentes.length">
-                            <app-evaluador-select [propuestaId]="propuesta.id" [evaluadores]="evaluadores" [evaluadorId]="propuesta.evaluador?.id"></app-evaluador-select>
+                            {{ propuesta.puntaje || 0 }}
                         </td>
                     </tr>
                 }

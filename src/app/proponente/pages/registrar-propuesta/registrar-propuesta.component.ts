@@ -5,6 +5,7 @@ import { ProfesoresService } from '../../services/profesores.service';
 import { MateriasService } from '../../services/materias.service';
 import { SemillerosService } from '../../services/semilleros.service';
 import { PropuestasService } from '../../services/propuesta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-propuesta',
@@ -18,10 +19,15 @@ export class RegistrarPropuestaComponent implements OnInit {
   private materiaService = inject( MateriasService );
   private semilleroService = inject( SemillerosService );
   private propuestasService = inject( PropuestasService );
+  private router = inject( Router );
   
   public profesores: Profesor[] = []; 
   public materias: Materia[] = [];
   public semilleros: Semillero[] = [];   
+  public tipos = [
+    { id: 'M', nombre: 'Materia' },
+    { id: 'S', nombre: 'Semillero' },
+  ]
 
   public myForm: FormGroup = this.fb.group({
     nombre: ['', [ Validators.required ]],
@@ -29,7 +35,7 @@ export class RegistrarPropuestaComponent implements OnInit {
     semillero: [null],
     materia: [null],
     archivo: ['', [ Validators.required ]],
-    tipo: ['', [ Validators.required ]],
+    tipo: ['M', [ Validators.required ]],
     estudiantes: this.fb.array([])
   });
 
@@ -68,7 +74,7 @@ export class RegistrarPropuestaComponent implements OnInit {
       codigo: ['', Validators.required],
       nombre: ['', Validators.required],
       cedula: ['', Validators.required],
-      semestre: ['', Validators.required]
+      semestre: ['', Validators.required],
     });
     this.estudiantes.push(estudianteFormGroup);
   }
@@ -90,20 +96,41 @@ export class RegistrarPropuestaComponent implements OnInit {
   }
 
   subirArchivo(event: any) {
+    if (!event.target.files[0]) return;
     const formData = new FormData();
     formData.append('file', event.target.files[0]);
     this.propuestasService.subirArchivo(formData).subscribe({
       next: (data) => {
         console.log(data);
-        this.myForm.get('archivo')?.setValue(data)
+        this.myForm.get('archivo')?.setValue(data);
       }, 
       error: (error) => {
+        if (error.status == 200) {
+          this.myForm.get('archivo')?.setValue(error.error.text);
+        }
         console.log(error);
       }
     });
   }
 
   submit() {
-    console.log(this.myForm.value);
+    if (this.myForm.invalid) return this.myForm.markAllAsTouched();
+    const { estudiantes, ...resto } = this.myForm.value;
+    const { tipo } = resto;
+    if (tipo == 'M') delete resto.semillero;
+    if (tipo == 'S') delete resto.materia;
+
+    this.propuestasService.agregarPropuesta([ ...estudiantes, resto ])
+      .subscribe({
+        next: (data) => {
+          this.router.navigateByUrl('proponente/');
+        }, 
+        error: (error) => {
+          if (error.status == 200) {
+            this.router.navigateByUrl('proponente/');
+          }
+          console.log(error);
+        }
+      });
   }
 }

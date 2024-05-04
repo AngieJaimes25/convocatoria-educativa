@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Usuario } from 'src/app/auth/interfaces/usuario.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -21,8 +23,8 @@ export class UsuarioService {
     };
   }
 
-  obtenerEvaluadores() {
+  obtenerEvaluadores(): Observable<Usuario[]> {
     const url  = `${ this.baseUrl }/usuario/listarEvaluadores`;
-    return this.http.get( url, this.commonOptions );
+    return this.http.get<Usuario[]>( url, this.commonOptions );
   }
 }

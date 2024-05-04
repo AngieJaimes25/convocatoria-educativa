@@ -24,7 +24,8 @@ export class PropuestasService {
   }
 
   agregarPropuesta( data: any ) {
-    
+    const url  = `${ this.baseUrl }/propuesta/registrar`;
+    return this.http.post( url, data, this.commonOptions );
   }
 
   obtenerPropuestas(): Observable<Propuesta[]> {
@@ -32,7 +33,7 @@ export class PropuestasService {
     return this.http.get<Propuesta[]>( url, this.commonOptions );
   } 
 
-  subirArchivo(data: any) {
+  subirArchivo(data: FormData) {
     const url  = `${ this.baseUrl }/propuesta/guardarArchivo`;
     return this.http.post( url, data, this.commonOptions );
   }
